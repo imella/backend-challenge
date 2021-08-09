@@ -3,6 +3,8 @@ require 'rails_helper'
 describe 'Friendships', type: :request do
   let(:body) { JSON.parse(response.body) }
   let(:headers) { { "Accept" => "application/json", 'Content-Type' => 'application/json' } }
+  let(:member) { Member.create(first_name: "Carl", "last_name": "Sagan", url: "https://carlsagan.com") }
+  let(:friend) { Member.create(first_name: "Michael", "last_name": "Faraday", url: "https://faraday.com") }
 
   describe 'creating a friendship' do
     subject { post '/friendships', params: params.to_json, headers: headers }
@@ -11,8 +13,8 @@ describe 'Friendships', type: :request do
       let(:params) do
         {
           friendship: {
-            member_id: 1,
-            friend_id: 2,
+            member_id: member.id,
+            friend_id: friend.id,
           }
         }
       end
