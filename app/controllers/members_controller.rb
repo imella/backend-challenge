@@ -6,7 +6,10 @@ class MembersController < BaseController
 
   def show
     @member = Member.find(params[:id])
-    render json: MemberSerializer.new(@member)
+    options = {}
+    options[:include] = params[:include]&.split(',')
+
+    render json: MemberSerializer.new(@member, options).serialized_json
   end
 
   def create
