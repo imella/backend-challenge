@@ -25,6 +25,14 @@ class MembersController < BaseController
     end
   end
 
+  def search
+    @member = Member.find(params[:id])
+    searcher = Searcher.new(@member)
+    term = params[:term]
+
+    render json: { paths: searcher.search_for(term) }
+  end
+
   private
 
   def member_params
