@@ -17,6 +17,8 @@ class MembersController < BaseController
 
     if @member.save
       ShortUrlJob.perform_later(@member.id)
+      CreateHeadingsJob.perform_later(@member.id)
+
       render json: MemberSerializer.new(@member)
     else
       render json: @member.errors, status: :unprocessable_entity

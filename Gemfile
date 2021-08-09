@@ -46,3 +46,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'fast_jsonapi'
 
 gem "bitly", "~> 2.0"
+
+gem "httparty", "~> 0.18.1"
+
+gem "activerecord-import", "~> 1.2"
